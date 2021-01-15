@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="./jsPsych/jspsych.js"></script>
+  <link rel="stylesheet" href="./jsPsych/css/jspsych.css">
+  </link>
+  <script src="./jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-likert.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-text.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+
+  <script src="./src/Trial_lr.js"></script>
+  <script src="./src/variables_lr.js"></script>
+  <script src="./src/functions_lr.js"></script>
+  <script src="./src/list_of_trials_lr.js"></script>
+  <script src="./src/lr.js"></script>
+
+
+
+
+
+  <style>
+    img {
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+<script>
+
+
+
+
+  jsPsych.init({
+    timeline: timeline_lr,
+    on_finish: function () {
+      jsPsych.data.displayData();
+    }
+  });
+</script>
+
+</html>

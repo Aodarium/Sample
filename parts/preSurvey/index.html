@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../jsPsych/jspsych.js"></script>
+  <link rel="stylesheet" href="../jsPsych/css/jspsych.css">
+  </link>
+  <script src="../jsPsych/plugins/jspsych-survey-likert.js"></script>
+  <script src="../jsPsych/plugins/jspsych-survey-text.js"></script>
+  <script src="../jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+  <script src="../jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+
+  <script src="./preSurveyQuestions.js"></script>
+  <script src="./preSurvey.js"></script>
+</head>
+
+<body>
+</body>
+<script>
+
+
+  jsPsych.init({
+    timeline: [part_preSurvey]
+  });
+
+</script>
+
+</html>

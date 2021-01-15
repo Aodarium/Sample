@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="./jsPsych/jspsych.js"></script>
+  <link rel="stylesheet" href="./jsPsych/css/jspsych.css">
+  </link>
+  <script src="./jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-likert.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-text.js"></script>
+  <script src="./jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+  <script src="./jsPsych/plugins/jspsych-audio-keyboard-response.js"></script>
+
+  
+  <script src="./src/preSurveyQuestions.js"></script>
+  <script src="./src/preSurvey.js"></script>
+  <script src="./src/function_survey.js"></script>
+  
+  <script src="./src/Trial_lr.js"></script>
+  <script src="./src/variables_lr.js"></script>
+  <script src="./src/functions_lr.js"></script>
+  <script src="./src/list_of_trials_lr.js"></script>
+  <script src="./src/lr.js"></script>
+
+  <script src="./src/Trial_ag.js"></script>
+  <script src="./src/variables_ag.js"></script>
+  <script src="./src/function_ag.js"></script>
+  <script src="./src/list_trial_ag.js"></script>
+  <script src="./src/ag.js"></script>
+
+  <script src="./src/consent.js"></script>
+
+
+
+
+  <style>
+    img {
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+<script>
+
+  
+  const ID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
+
+  var myTrialAG = new TrialAG(ID);
+  var myTrialLR = new TrialLR(ID);
+
+  var n_blur = 0;
+
+  var timeline = [];
+
+
+  timeline.push(consent);
+  timeline.push(welcomePage);
+  
+  timeline.push(part_preSurvey);
+  //timeline.push(hideMouse);
+  timeline.push(part_ag);
+  timeline.push(part_lr);
+  //timeline.push(showMouse);
+  //timeline.push(part_postSurvey);
+  //timeline.push(end);
+
+
+  jsPsych.init({
+    timeline: timeline,
+    on_interaction_data_update: function () {
+			let getInteractions = jsPsych.data.getInteractionData();
+			let interactionData = JSON.parse(getInteractions.json());
+			let lastEvent = interactionData[interactionData.length - 1];
+			if (lastEvent["event"] === "blur") {
+				n_blur++;
+			}
+			if (n_blur > 2) {
+				jsPsych.endExperiment('<p><strong>End</strong></p>' +
+					'The experiment window was left 2 times during the experiment also we do have to stop it now.'
+					);
+			}
+    }
+  });
+</script>
+
+</html>
